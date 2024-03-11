@@ -13,7 +13,11 @@ const getCarousels = async (): Promise<Carousel[] | null> => {
   let carousels: Carousel[] | null;
 
   try {
-    carousels = await db.carousel.findMany();
+    carousels = await db.carousel.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
   } catch (error) {
     return null;
   }

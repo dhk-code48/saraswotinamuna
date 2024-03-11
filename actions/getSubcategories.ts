@@ -13,7 +13,11 @@ const getSubCategories = async (): Promise<SubCategory[] | null> => {
   let subcategories: SubCategory[] | null;
 
   try {
-    subcategories = await db.subCategory.findMany();
+    subcategories = await db.subCategory.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
   } catch (error) {
     return null;
   }

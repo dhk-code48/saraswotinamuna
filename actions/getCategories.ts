@@ -13,7 +13,11 @@ const getCategorys = async (): Promise<Category[] | null> => {
   let categories: Category[] | null;
 
   try {
-    categories = await db.category.findMany();
+    categories = await db.category.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
   } catch (error) {
     return null;
   }
